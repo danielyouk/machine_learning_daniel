@@ -1,0 +1,30 @@
+pre.sourceCode {
+  background-color: transparetn;
+  border: 3px dashed black;
+  }
+  
+/* pre.sourceCode:before {
+content: "=================================================";
+display: block;
+}
+
+pre.sourceCode:after {
+content: "==========";
+display: block;
+} */
+
+/* .figure {
+  text-align: center;
+} */
+
+/* .figure img {
+  display: inline-block;
+  max-width: 100%;
+  width: auto;
+} */
+
+.figcaption {
+  text-align: center;
+  margin-top: 0.5em;
+  font-style: italic;
+}

@@ -1,0 +1,117 @@
+---
+title: "Machine Learning with Python: Cross-Validation"
+format: 
+    html:
+        fontsize: 13pt
+        fig.process: true
+        number-sections: true
+        css: custom.css
+        geometry: margin=1in
+        # df-print: paged
+# fig-caption-style: 
+# text-align: center;
+editor_options:
+  chunk_output_type: console
+---
+
+# Part1
+```{r, include=FALSE}
+library(reticulate)
+reticulate::use_condaenv(condaenv = "/opt/miniconda3/envs/ml-mac")
+```
+
+Most of the time, it’s also possible to **convert a supervised dataset to unsupervised**
+
+Firstly, first and foremost, let's start with importing required libraries.
+
+```{python}
+import matplotlib.pyplot as plt
+import numpy as np
+import pandas as pd
+import seaborn as sns
+
+from sklearn import datasets
+from sklearn import manifold
+```
+
+## Cross-Validation
+* k-fold cross-validation
+* stratified k-fold cross-validation
+* hold-out based validation
+* leave-one-out cross-validation
+* group k-fold cross-validation
+
+***Occam’s razor*** in simple words states that one should not try to complicate things that can be solved in a much simpler manner. In other words, the simplest solutions are the most generalizable solutions. In general, whenever your model does not obey Occam’s razor, it is probably overfitting.
+
+![General Understanding for Over-fitting](./images/overfitting.png){width=50%}
+
+
+***Regarding stratified k-fold cross-validation***, the important technique is that you will have k-different models which have different parameters, and these \underline{k-different model} will be used for creating a inference which will be created by merging or ensembling from \underline{k-different inference results}. 
+
+### k-fold cross-validation
+
+```{python, width=1000}
+from sklearn.model_selection import KFold
+from tabulate import tabulate
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
+df = pd.read_csv(url, sep=";")
+
+kf = KFold(n_splits=5, shuffle=True, random_state=42)
+
+df['kfold'] = -1
+
+# Split df into 5 folds
+for fold, (train_index, test_index) in enumerate(kf.split(df)):
+    df.loc[test_index, 'kfold'] = fold
+
+df.to_csv('../data/wine-quality-data.csv')
+print(df)
+```
+
+***Would be much better to show as a graph as well***
+
+```{python}
+import plotly.express as px
+df = df.sort_values(by="kfold")
+fig = px.histogram(df, x="quality", color="kfold", title="Histogram of KFold Column")
+fig.show()
+```
+
+### stratified k-fold cross-validation
+
+
+```{python}
+from sklearn.model_selection import StratifiedKFold
+url = "https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv"
+df = pd.read_csv(url, sep=";")
+# Create a StratifiedKFold object
+skf = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+df['kfold'] = -1
+
+# Split df into 5 folds
+for fold, (train_index, test_index) in enumerate(skf.split(df, df['quality'])):
+    df.loc[test_index, 'kfold'] = fold
+```
+
+
+```{python}
+import plotly.express as px
+
+df = df.sort_values(by="kfold")
+fig = px.histogram(df, x="quality", color="kfold", title="Histogram of Statified KFold Column")
+fig.show()
+```
+
+### hold-out based validation
+In some cases, stratified k-fold cross-validation is quite demanding for computing. For this kinds of case, just one fold is used for validation set. And it is recommended to split into higher number of k-fold if the number of samples is high such as 1 million. 
+
+## Regression
+- Mostly, simple k-fold cross-validation works for any regression problem
+- If you see that the distribution of targets is not consistent, you can use stratified k-fold
+- If you have a lot of samples( > 10k, > 100k), then you don’t need to care about the number of bins.
+- If the number of the samples is low, then use Sturge's rule.
+
+Sturge's rule: Number of Bins = 1 + log2(N)
+
+***Consider and do Stratified K-fold Cross-Validation for Regression Problem.*** For this, the most important thing is to get the relevant data.

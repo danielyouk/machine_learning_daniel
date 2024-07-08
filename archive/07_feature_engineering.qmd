@@ -1,0 +1,45 @@
+---
+title: "Machine Learning with Python: Feature Engineering"
+format: 
+    html:
+        fontsize: 13pt
+        fig.process: true
+        number-sections: true
+        css: custom.css
+        geometry: margin=1in
+        # df-print: paged
+# fig-caption-style: 
+# text-align: center;
+editor_options:
+  chunk_output_type: console
+---
+
+```{python}
+import pandas as pd
+import seaborn as sns
+
+# Load the Titanic dataset
+df = sns.load_dataset('titanic')
+
+def generate_features(df):
+    # Group by 'survived'
+    grouped = df.groupby('survived')
+
+    # Apply necessary functions
+    agg_df = pd.DataFrame()
+    agg_df['num_passengers_class_recorded'] = grouped['class'].count()  
+    agg_df['num_passengers'] = grouped.size()  # Total number of passengers per group
+
+    # Other aggregations remain the same
+    agg_df['total_age'] = grouped['age'].sum()
+    agg_df['max_age'] = grouped['age'].max()
+    agg_df['min_age'] = grouped['age'].min()
+    agg_df['average_age'] = grouped['age'].mean()
+    agg_df['unique_sex_count'] = grouped['sex'].nunique()
+
+    agg_df = agg_df.reset_index()
+    return agg_df
+
+agg_df = generate_features(df)
+print(agg_df)
+```
