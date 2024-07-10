@@ -28,6 +28,10 @@ By the end of this course, participants will be able to:
 - Efficiently use data and metrics to evaluate and improve machine learning models.
 - Build and deploy machine learning applications to solve real-world problems.
 
+## Further Ideas to be added
+
+- bias-variance-tradeoff
+
 ## Get Involved
 
 - **Contributions**: As the repository is under active development, we welcome contributions from students and experts alike. Feel free to fork the repository and submit pull requests.

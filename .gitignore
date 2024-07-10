@@ -1,3 +1,4 @@
 /.DS_Store
 /materials/*.pdf
 # exclue the file starts with "Meta Learning"
+*.pdf
