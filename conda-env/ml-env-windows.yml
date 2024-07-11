@@ -11,6 +11,8 @@ dependencies:
   - matplotlib
   - seaborn
   - xgboost
+  - catboost
+  - lightgbm
   - jupyter
   - notebook
   - ipykernel
@@ -119,3 +121,5 @@ dependencies:
       - urllib3==2.2.1
       - werkzeug==3.0.3
       - xgboost==2.0.3
+      - catboost==1.2.3
+      - lightgbm==4.3.0

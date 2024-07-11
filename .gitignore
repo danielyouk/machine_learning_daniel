@@ -2,3 +2,4 @@
 /materials/*.pdf
 # exclue the file starts with "Meta Learning"
 *.pdf
+/materials/ch.10/catboost_info/*
