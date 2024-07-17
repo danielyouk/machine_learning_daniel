@@ -3,3 +3,6 @@
 # exclue the file starts with "Meta Learning"
 *.pdf
 /materials/ch.10/catboost_info/*
+/materials/ch.11/catboost_info/*
+/catboost_info/*
+/materials/images/*
