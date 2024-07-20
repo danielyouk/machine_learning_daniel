@@ -13,6 +13,8 @@ dependencies:
   - xgboost
   - catboost
   - lightgbm
+  # - treelite
+  # - treelite-runtime
   - jupyter
   - notebook
   - ipykernel

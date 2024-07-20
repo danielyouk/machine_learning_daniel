@@ -4,5 +4,6 @@
 *.pdf
 /materials/ch.10/catboost_info/*
 /materials/ch.11/catboost_info/*
+/materials/ch.11/models/*
 /catboost_info/*
 /materials/images/*
