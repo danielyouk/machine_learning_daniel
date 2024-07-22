@@ -101,3 +101,4 @@ treelite-runtime==3.9.1
 urllib3==2.2.1
 werkzeug==3.0.3
 yfinance==0.2.40
+xlrd==2.0.1
