@@ -8,8 +8,6 @@ This repository serves as the primary resource hub for students and participants
 
 ### Current Status
 
-- **Under Construction**: The repository is currently under development and is scheduled to be finalized by July 22, 2024.
-- **Accessing Materials**: Despite the ongoing development, you can already access a variety of scripts and educational content. 
 - **Course Materials**: For a glimpse into the quality of the course content, please visit the [materials folder](./materials/07_ml_evaluation_metric.ipynb).
 
 ## Course Objectives
